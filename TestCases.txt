@@ -1,0 +1,12 @@
+Exploratory testing:
+1. Happy path with random data
+2. Happy path with edge cases: long names, special symbols
+3. Validation check - I shouldn't be able to submit with required fileds empty
+4. More comprehensive validation checks on the fields - like symbols for phoen number etc
+5. Try to login with created user
+
+One issue found (or expected behaviour):
+Cannot use '+' in email field. this prevents me to automate the email functionality because for every test run we have
+to use new unique email or to delete the data from the DB (I don't have access neither to db or end point for this action)
+according to the  RFC 5322: Internet Message Format  "+" is a valid email character. So there is either strong busness case
+for this behaviour or this is a bug.
