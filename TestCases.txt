@@ -1,12 +1,20 @@
 Exploratory testing:
 1. Happy path with random data
 2. Happy path with edge cases: long names, special symbols
-3. Validation check - I shouldn't be able to submit with required fileds empty
-4. More comprehensive validation checks on the fields - like symbols for phoen number etc
+3. Validation check - I shouldn't be able to submit with required fields empty
+4. More comprehensive validation checks on the fields - like symbols for phone number etc
 5. Try to login with created user
 
 One issue found (or expected behaviour):
 Cannot use '+' in email field. this prevents me to automate the email functionality because for every test run we have
 to use new unique email or to delete the data from the DB (I don't have access neither to db or end point for this action)
-according to the  RFC 5322: Internet Message Format  "+" is a valid email character. So there is either strong busness case
+according to the  RFC 5322: Internet Message Format  "+" is a valid email character. So there is either strong business case
 for this behaviour or this is a bug.
+
+My approach for email verification would be:
+1. Implement util class for working with email. I will fetch the last email based on uniq name in the registration
+to make sure that I'm using the right registration mail. I will get the verification link and open it in the browser
+ and confirm the registration
+2. If "+" character is possible to use I will use only one mail box and add email like USERNAME+Random number@gmail.com
+3. If there is business logic for not using the "+" I will have cleanup after method for removing the registration
+ from the system (I will need access etheir to he DB or having API End point for this, API is preferd solution in this case)
